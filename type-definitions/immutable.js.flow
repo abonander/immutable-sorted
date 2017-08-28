@@ -1020,6 +1020,109 @@ declare class OrderedSet<+T> extends Set<T> {
   ): OrderedSet<R>;
 }
 
+declare function isSortedSet(maybeSortedSet: mixed): boolean %checks(maybeSortedSet instanceof SortedSet);
+declare class SortedSet<+T> extends Set<T> {
+  static <T>(collection?: Iterable<T>, comparator?: (T, T) => number, options: Object);
+  static (_: any): SortedSet<any>;
+
+  static of<T>(...values: T[]): OrderedSet<T>;
+  static fromKeys<T>(iter: Iterable<[T, mixed]>): OrderedSet<T>;
+  static fromKeys<K, V>(object: { [key: K]: V }): OrderedSet<K>;
+    
+  isSortedSet: typeof isSortedSet;
+  
+  size: number;
+
+  pack(collection?: Iterable<T>): SortedSet<T>;
+
+  add<U>(value: U): SortedSet<T | U>;
+  union<U>(...collections: Iterable<U>[]): SortedSet<T | U>;
+  merge<U>(...collections: Iterable<U>[]): SortedSet<T | U>;
+  intersect<U>(...collections: Iterable<U>[]): SortedSet<T & U>;
+
+  concat<C>(...iters: Array<Iterable<C> | C>): SortedSet<T | C>;
+
+  map<M>(
+      mapper: (value: T, value: T, iter: this) => M,
+      context?: mixed
+  ): SortedSet<M>;
+
+  flatMap<M>(
+      mapper: (value: T, value: T, iter: this) => Iterable<M>,
+      context?: mixed
+  ): SortedSet<M>;
+
+  flatten(depth?: number): SortedSet<any>;
+  flatten(shallow?: boolean): SortedSet<any>;
+
+  zip<A>(
+      a: Iterable<A>,
+      ..._: []
+  ): SortedSet<[T, A]>;
+  zip<A, B>(
+      a: Iterable<A>,
+      b: Iterable<B>,
+      ..._: []
+  ): SortedSet<[T, A, B]>;
+  zip<A, B, C>(
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      ..._: []
+  ): SortedSet<[T, A, B, C]>;
+  zip<A, B, C, D>(
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      d: Iterable<D>,
+      ..._: []
+  ): SortedSet<[T, A, B, C, D]>;
+  zip<A, B, C, D, E>(
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      d: Iterable<D>,
+      e: Iterable<E>,
+      ..._: []
+  ): SortedSet<[T, A, B, C, D, E]>;
+
+  zipWith<A, R>(
+      zipper: (value: T, a: A) => R,
+      a: Iterable<A>,
+      ..._: []
+  ): SortedSet<R>;
+  zipWith<A, B, R>(
+      zipper: (value: T, a: A, b: B) => R,
+      a: Iterable<A>,
+      b: Iterable<B>,
+      ..._: []
+  ): SortedSet<R>;
+  zipWith<A, B, C, R>(
+      zipper: (value: T, a: A, b: B, c: C) => R,
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      ..._: []
+  ): SortedSet<R>;
+  zipWith<A, B, C, D, R>(
+      zipper: (value: T, a: A, b: B, c: C, d: D) => R,
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      d: Iterable<D>,
+      ..._: []
+  ): SortedSet<R>;
+  zipWith<A, B, C, D, E, R>(
+      zipper: (value: T, a: A, b: B, c: C, d: D, e: E) => R,
+      a: Iterable<A>,
+      b: Iterable<B>,
+      c: Iterable<C>,
+      d: Iterable<D>,
+      e: Iterable<E>,
+      ..._: []
+  ): SortedSet<R>;
+}
+
 declare function isStack(maybeStack: mixed): boolean %checks(maybeStack instanceof Stack);
 declare class Stack<+T> extends IndexedCollection<T> {
   static <T>(collection?: Iterable<T>): Stack<T>;
