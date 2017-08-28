@@ -1022,7 +1022,7 @@ declare class OrderedSet<+T> extends Set<T> {
 
 declare function isSortedSet(maybeSortedSet: mixed): boolean %checks(maybeSortedSet instanceof SortedSet);
 declare class SortedSet<+T> extends Set<T> {
-  static <T>(collection?: Iterable<T>, comparator?: (T, T) => number, options: Object): SortedSet<T>;
+  constructor(collection?: Iterable<T>, comparator?: (T, T) => number, options?: Object): SortedSet<T>;
 
   static of<T>(...values: T[]): OrderedSet<T>;
   static fromKeys<T>(iter: Iterable<[T, mixed]>): OrderedSet<T>;
