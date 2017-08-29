@@ -874,7 +874,7 @@ declare class OrderedMap<K, +V> extends Map<K, V> {
 
 declare function isSortedMap(maybeSortedMap: mixed): boolean %checks(maybeSortedMap instanceof SortedMap);
 declare class SortedMap<K, +V> extends Map<K, V> {
-    constructor(obj?: {[key: K]: V}): SortedMap<K, V>;
+    constructor(obj?: {[key: K]: V} | SortedMap<K, V>, comparator?: (K, K) => number, options?: Object): SortedMap<K, V>;
 
     static isSortedMap: typeof isSortedMap;
 
