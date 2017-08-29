@@ -872,6 +872,99 @@ declare class OrderedMap<K, +V> extends Map<K, V> {
   flatten(shallow?: boolean): OrderedMap<any, any>;
 }
 
+declare function isSortedMap(maybeSortedMap: mixed): boolean %checks(maybeSortedMap instanceof SortedMap);
+declare class SortedMap<K, +V> extends Map<K, V> {
+    constructor(obj?: {[key: K]: V}): SortedMap<K, V>;
+
+    static isSortedMap: typeof isSortedMap;
+
+    size: number;
+
+    set<K_, V_>(key: K_, value: V_): SortedMap<K | K_, V | V_>;
+    delete(key: K): this;
+    remove(key: K): this;
+    clear(): this;
+
+    update<U>(updater: (value: this) => U): U;
+    update<V_>(key: K, updater: (value: V) => V_): SortedMap<K, V | V_>;
+    update<V_>(key: K, notSetValue: V_, updater: (value: V) => V_): SortedMap<K, V | V_>;
+
+    merge<K_, V_>(
+        ...collections: (Iterable<[K_, V_]> | { [key: K_]: V_ })[]
+): SortedMap<K | K_, V | V_>;
+
+    mergeWith<K_, W, X>(
+        merger: (oldVal: V, newVal: W, key: K) => X,
+        ...collections: (Iterable<[K_, W]> | { [key: K_]: W })[]
+): SortedMap<K | K_, V | W | X>;
+
+    mergeDeep<K_, V_>(
+        ...collections: (Iterable<[K_, V_]> | { [key: K_]: V_ })[]
+): SortedMap<K | K_, V | V_>;
+
+    mergeDeepWith<K_, W, X>(
+        merger: (oldVal: V, newVal: W, key: K) => X,
+        ...collections: (Iterable<[K_, W]> | { [key: K_]: W })[]
+): SortedMap<K | K_, V | W | X>;
+
+    setIn(keyPath: Iterable<mixed>, value: mixed): this;
+    deleteIn(keyPath: Iterable<mixed>, value: mixed): this;
+    removeIn(keyPath: Iterable<mixed>, value: mixed): this;
+
+    updateIn(
+        keyPath: Iterable<mixed>,
+        notSetValue: mixed,
+        updater: (value: any) => mixed
+    ): this;
+    updateIn(
+        keyPath: Iterable<mixed>,
+        updater: (value: any) => mixed
+    ): this;
+
+    mergeIn(
+        keyPath: Iterable<K>,
+        ...collections: (Iterable<K> | { [key: string]: mixed })[]
+): this;
+    mergeDeepIn(
+        keyPath: Iterable<K>,
+        ...collections: (Iterable<K> | { [key: string]: mixed })[]
+): this;
+
+    withMutations(mutator: (mutable: this) => mixed): this;
+    asMutable(): this;
+    asImmutable(): this;
+
+    // Override specialized return types
+
+    flip(): SortedMap<V, K>;
+
+    concat<KC, VC>(...iters: Array<Iterable<[KC, VC]>>): SortedMap<K | KC, V | VC>;
+    concat<C>(...iters: Array<{[key: string]: C}>): SortedMap<K | string, V | C>;
+
+    map<M>(
+        mapper: (value: V, key: K, iter: this) => M,
+        context?: mixed
+    ): SortedMap<K, M>;
+
+    mapKeys<M>(
+        mapper: (key: K, value: V, iter: this) => M,
+        context?: mixed
+    ): SortedMap<M, V>;
+
+    mapEntries<KM, VM>(
+        mapper: (entry: [K, V], index: number, iter: this) => [KM, VM],
+        context?: mixed
+    ): SortedMap<KM, VM>;
+
+    flatMap<KM, VM>(
+        mapper: (value: V, key: K, iter: this) => Iterable<[KM, VM]>,
+        context?: mixed
+    ): SortedMap<KM, VM>;
+
+    flatten(depth?: number): SortedMap<any, any>;
+    flatten(shallow?: boolean): SortedMap<any, any>;
+}
+
 declare function isSet(maybeSet: mixed): boolean %checks(maybeSet instanceof Set);
 declare class Set<+T> extends SetCollection<T> {
   static <T>(collection?: Iterable<T>): Set<T>;
