@@ -1413,6 +1413,7 @@ export {
   Repeat,
   Record,
   Set,
+  SortedMap,
   SortedSet,
   Stack,
 
@@ -1442,6 +1443,7 @@ export default {
   Repeat,
   Record,
   Set,
+  SortedMap,
   SortedSet,
   Stack,
 
