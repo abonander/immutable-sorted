@@ -35,7 +35,7 @@ export class SortedSet extends Set {
       }
     }
     if (!options) {
-      if(this.getOptions) {
+      if(this && this instanceof SortedSet) {
         options = this.getOptions();
       }
       if (!options) {

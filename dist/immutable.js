@@ -5881,7 +5881,7 @@ var SortedMap = (function (Map$$1) {
       }
     }
     if (!options) {
-      if(this.getOptions) {
+      if(this && this instanceof SortedMap) {
         options = this.getOptions();
       }
       if (!options) {
@@ -6833,7 +6833,7 @@ var SortedSet = (function (Set$$1) {
       }
     }
     if (!options) {
-      if(this.getOptions) {
+      if(this && this instanceof SortedSet) {
         options = this.getOptions();
       }
       if (!options) {

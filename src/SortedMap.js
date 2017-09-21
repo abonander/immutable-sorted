@@ -52,7 +52,7 @@ export class SortedMap extends Map {
       }
     }
     if (!options) {
-      if(this.getOptions) {
+      if(this && this instanceof SortedMap) {
         options = this.getOptions();
       }
       if (!options) {
