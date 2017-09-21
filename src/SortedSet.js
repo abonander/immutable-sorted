@@ -27,7 +27,7 @@ export class SortedSet extends Set {
 
   constructor(value, comparator, options) {
     if (!comparator) {
-      if(this instanceof SortedSet) {
+      if(this.getComparator) {
         comparator = this.getComparator();
       }
       if (!comparator) {
@@ -35,7 +35,7 @@ export class SortedSet extends Set {
       }
     }
     if (!options) {
-      if(this instanceof SortedSet) {
+      if(this.getOptions) {
         options = this.getOptions();
       }
       if (!options) {

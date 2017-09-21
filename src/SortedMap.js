@@ -44,7 +44,7 @@ export class SortedMap extends Map {
 
   constructor(value, comparator, options) {
     if (!comparator) {
-      if(this instanceof SortedMap) {
+      if(this.getComparator) {
         comparator = this.getComparator();
       }
       if (!comparator) {
@@ -52,7 +52,7 @@ export class SortedMap extends Map {
       }
     }
     if (!options) {
-      if(this instanceof SortedMap) {
+      if(this.getOptions) {
         options = this.getOptions();
       }
       if (!options) {
