@@ -25,23 +25,7 @@ import assertNotInfinite from './utils/assertNotInfinite';
 export class SortedSet extends Set {
   // @pragma Construction
 
-  constructor(value, comparator, options) {
-    if (!comparator) {
-      if(this && this instanceof SortedSet) {
-        comparator = this.getComparator();
-      }
-      if (!comparator) {
-        comparator = SortedSet.defaultComparator;
-      }
-    }
-    if (!options) {
-      if(this && this instanceof SortedSet) {
-        options = this.getOptions();
-      }
-      if (!options) {
-        options = SortedSet.defaultOptions;
-      }
-    }
+  constructor(value, comparator = SortedSet.defaultComparator, options = SortedSet.defaultOptions) {
     return value === null || value === undefined
       ? emptySortedSet(comparator, options)
       : isSortedSet(value) &&

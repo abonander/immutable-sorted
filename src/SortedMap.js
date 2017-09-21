@@ -42,24 +42,7 @@ import { KeyedSeq } from './Seq';
 export class SortedMap extends Map {
   // @pragma Construction
 
-  constructor(value, comparator, options) {
-    if (!comparator) {
-      if(this && this instanceof SortedMap) {
-        comparator = this.getComparator();
-      }
-      if (!comparator) {
-        comparator = SortedMap.defaultComparator;
-      }
-    }
-    if (!options) {
-      if(this && this instanceof SortedMap) {
-        options = this.getOptions();
-      }
-      if (!options) {
-        options = SortedMap.defaultOptions;
-      }
-    }
-
+  constructor(value, comparator = SortedMap.defaultComparator, options = SortedMap.defaultOptions) {
     return value === null || value === undefined
       ? emptySortedMap(comparator, options)
       : isSortedMap(value) &&

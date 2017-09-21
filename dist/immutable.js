@@ -5872,22 +5872,8 @@ var SortedMapBtreeNodeFactory = (function (SortedMapNodeFactory$$1) {
 
 var SortedMap = (function (Map$$1) {
   function SortedMap(value, comparator, options) {
-    if (!comparator) {
-      if(this && this instanceof SortedMap) {
-        comparator = this.getComparator();
-      }
-      if (!comparator) {
-        comparator = SortedMap.defaultComparator;
-      }
-    }
-    if (!options) {
-      if(this && this instanceof SortedMap) {
-        options = this.getOptions();
-      }
-      if (!options) {
-        options = SortedMap.defaultOptions;
-      }
-    }
+    if ( comparator === void 0 ) comparator = SortedMap.defaultComparator;
+    if ( options === void 0 ) options = SortedMap.defaultOptions;
 
     return value === null || value === undefined
       ? emptySortedMap(comparator, options)
@@ -6824,22 +6810,9 @@ function emptySet() {
 
 var SortedSet = (function (Set$$1) {
   function SortedSet(value, comparator, options) {
-    if (!comparator) {
-      if(this && this instanceof SortedSet) {
-        comparator = this.getComparator();
-      }
-      if (!comparator) {
-        comparator = SortedSet.defaultComparator;
-      }
-    }
-    if (!options) {
-      if(this && this instanceof SortedSet) {
-        options = this.getOptions();
-      }
-      if (!options) {
-        options = SortedSet.defaultOptions;
-      }
-    }
+    if ( comparator === void 0 ) comparator = SortedSet.defaultComparator;
+    if ( options === void 0 ) options = SortedSet.defaultOptions;
+
     return value === null || value === undefined
       ? emptySortedSet(comparator, options)
       : isSortedSet(value) &&
