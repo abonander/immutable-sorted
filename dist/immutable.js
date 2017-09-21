@@ -5873,7 +5873,7 @@ var SortedMapBtreeNodeFactory = (function (SortedMapNodeFactory$$1) {
 var SortedMap = (function (Map$$1) {
   function SortedMap(value, comparator, options) {
     if (!comparator) {
-      if(this.getComparator) {
+      if(this && this instanceof SortedMap) {
         comparator = this.getComparator();
       }
       if (!comparator) {
@@ -6825,7 +6825,7 @@ function emptySet() {
 var SortedSet = (function (Set$$1) {
   function SortedSet(value, comparator, options) {
     if (!comparator) {
-      if(this.getComparator) {
+      if(this && this instanceof SortedSet) {
         comparator = this.getComparator();
       }
       if (!comparator) {
