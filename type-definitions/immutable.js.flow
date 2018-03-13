@@ -961,6 +961,8 @@ declare class SortedMap<K, +V> extends Map<K, V> {
 
     flatten(depth?: number): SortedMap<any, any>;
     flatten(shallow?: boolean): SortedMap<any, any>;
+
+    pack(collection?: Iterable<[K, V]>): this;
 }
 
 declare function isSet(maybeSet: mixed): boolean %checks(maybeSet instanceof Set);
